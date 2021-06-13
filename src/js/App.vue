@@ -2,7 +2,7 @@
 	<div id="appex">
 		<div class="x-flx m__flxColumn xu__flx-center xm__mX xm__p">
 			<div class="x-txt">
-				<h1>tablas</h1>
+				<h1>Numeros aleatorios</h1>
 			</div>
 			<button class="x-btn" @click="populate()">Generar numeros</button>
 			<div class="x-flx m__flxRow-wrap xu__flx-center-start">
@@ -15,14 +15,20 @@
 					<tbody>
 						<tr v-for="(value, index) in rows[0] || 100" :key="index">
 							<th>Fila: {{ index + 1 }}</th>
+							<td v-if="!rows[0]"></td>
 							<td
-								:class="
-									rows[0]
-										? [
-												{ is__firstMatch: rows[1].includes(value) },
-												{ is__firstMatch: rows[2].includes(value) },
-										  ]
-										: false
+								v-else
+								:class="[
+									{ is__firstMatch: rows[1].includes(value) },
+									{ is__secondMatch: rows[2].includes(value) },
+								]"
+								:title="
+									(rows[1].includes(value)
+										? ` Tabla 2, fila ${rows[1].indexOf(value) + 1};`
+										: '') +
+										(rows[2].includes(value)
+											? ` Tabla 3, fila ${rows[2].indexOf(value) + 1};`
+											: '')
 								"
 							>
 								{{ rows[0] ? value : "" }}
@@ -41,8 +47,16 @@
 							<td
 								:class="[
 									{ is__firstMatch: rows[0].includes(value) },
-									{ is__firstMatch: rows[2].includes(value) },
+									{ is__secondMatch: rows[2].includes(value) },
 								]"
+								:title="
+									(rows[0].includes(value)
+										? ` Tabla 1, fila ${rows[0].indexOf(value) + 1};`
+										: '') +
+										(rows[2].includes(value)
+											? ` Tabla 3, fila ${rows[2].indexOf(value) + 1};`
+											: '')
+								"
 							>
 								{{ value }}
 							</td>
@@ -60,8 +74,16 @@
 							<td
 								:class="[
 									{ is__firstMatch: rows[1].includes(value) },
-									{ is__firstMatch: rows[0].includes(value) },
+									{ is__secondMatch: rows[0].includes(value) },
 								]"
+								:title="
+									(rows[1].includes(value)
+										? ` Tabla 2, fila ${rows[1].indexOf(value) + 1};`
+										: '') +
+										(rows[0].includes(value)
+											? ` Tabla 1, fila ${rows[0].indexOf(value) + 1};`
+											: '')
+								"
 							>
 								{{ value }}
 							</td>
