@@ -4,7 +4,17 @@
 			<div class="x-txt">
 				<h1>Numeros aleatorios</h1>
 			</div>
-			<button class="x-btn" @click="populate()">Generar numeros</button>
+			<div class="x-flx m__flxRow-wrap xu__flx-center">
+				<button
+					v-if="oldRows.length && oldRows[0] !== rows[0]"
+					class="x-link"
+					@click="turnBack()"
+				>
+					<i class="fas fa-arrow-left x-icon"></i>
+					<span>Numeros previos</span>
+				</button>
+				<button class="x-btn" @click="populate()">Generar numeros</button>
+			</div>
 			<div class="x-flx m__flxRow-wrap xu__flx-center-start">
 				<table class="x-table">
 					<thead>
@@ -101,6 +111,7 @@
 		data() {
 			return {
 				rows: [],
+				oldRows: [],
 			};
 		},
 		methods: {
@@ -111,12 +122,16 @@
 			},
 			populate() {
 				let newRows = [[], [], []];
+				this.oldRows = [...this.rows];
 				for (let t = 0; t < newRows.length; t++) {
 					for (let n = 0; n < 100; n++) {
 						newRows[t].push(this.getRandomNumber(newRows[t]));
 					}
 				}
 				this.rows = newRows;
+			},
+			turnBack() {
+				this.rows = [...this.oldRows];
 			},
 		},
 	};
