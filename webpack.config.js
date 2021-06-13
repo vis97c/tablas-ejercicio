@@ -299,7 +299,7 @@ if (isProduction) {
 	);
 	module.exports = Object.assign({}, config, {
 		devServer: {
-			port: 3000,
+			port: 3001,
 			hot: false,
 			inline: true,
 			contentBase: "public",

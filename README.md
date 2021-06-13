@@ -1,10 +1,8 @@
-# Zoovu game Vue.js
+# Tables exercise Vue.js
 
-Mini game built in vue for zoovo.
+Mini game built in vue for personal use.
 
-[Github repo](https://github.com/vis97c/zoovu-vue) - [Live preview](https://zoovu-vue.surge.sh/)
-
-While this was a fun project, it take a while to complete because i wanted to developt it in [React.js](https://github.com/vis97c/zoovu-react-typescript) too. I hope it is of your liking. Also i just write a couple of test because in not that experienced in that part, i'll work a lot to improve that part.
+[Github repo](https://github.com/vis97c/tablas-ejercicio) - [Live preview](https://tablas.surge.sh/)
 
 To developt the project quickly i used a modified version of the custom css library that i was developing for a personal project.
 
@@ -26,7 +24,7 @@ Then build the project, thats all.
     npm run dev
 ```
 
-While "**watch**" mode is available, i recommend to run the dev command at least once to copy the static assets to the "**public**" directory 
+While "**watch**" mode is available, i recommend to run the dev command at least once to copy the static assets to the "**public**" directory
 
 Also while developing you can optionally provide the enviroment variable "WATCH_BROWSER" to open a different browser than the system default
 

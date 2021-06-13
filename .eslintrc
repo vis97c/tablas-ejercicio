@@ -49,7 +49,8 @@
 		"no-mixed-spaces-and-tabs": [
 			"warn",
 			"smart-tabs"
-		]
+		],
+		"no-unused-vars": "warn"
 	},
 	"overrides": [
 		{
