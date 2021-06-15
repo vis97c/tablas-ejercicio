@@ -4,6 +4,13 @@
 			<div class="x-txt">
 				<h1>Numeros aleatorios</h1>
 			</div>
+			<div class="x-txt xm__txtAlign-center">
+				<p>
+					<b class="xm__txtColor-primary7">Se repite en 2 tablas</b>
+					|
+					<b class="xm__txtColor-danger7">Se repite en 3 tablas</b>
+				</p>
+			</div>
 			<div class="x-flx m__flxRow-wrap xu__flx-center">
 				<button
 					v-if="oldRows.length && oldRows[0] !== rows[0]"
