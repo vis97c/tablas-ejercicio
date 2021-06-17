@@ -36,6 +36,7 @@
 							<td
 								v-else
 								:class="[
+									'xm__txtAlign-center',
 									{ is__firstMatch: rows[1].includes(value) },
 									{ is__secondMatch: rows[2].includes(value) },
 								]"
@@ -48,7 +49,7 @@
 											: '')
 								"
 							>
-								{{ rows[0] ? addZeros(value) : "" }}
+								<code>{{ rows[0] ? addZeros(value) : "" }}</code>
 							</td>
 						</tr>
 					</tbody>
@@ -63,6 +64,7 @@
 						<tr v-for="(value, index) in rows[1]" :key="index">
 							<td
 								:class="[
+									'xm__txtAlign-center',
 									{ is__firstMatch: rows[0].includes(value) },
 									{ is__secondMatch: rows[2].includes(value) },
 								]"
@@ -75,7 +77,7 @@
 											: '')
 								"
 							>
-								{{ addZeros(value) }}
+								<code>{{ addZeros(value) }}</code>
 							</td>
 						</tr>
 					</tbody>
@@ -90,6 +92,7 @@
 						<tr v-for="(value, index) in rows[2]" :key="index">
 							<td
 								:class="[
+									'xm__txtAlign-center',
 									{ is__firstMatch: rows[1].includes(value) },
 									{ is__secondMatch: rows[0].includes(value) },
 								]"
@@ -102,7 +105,7 @@
 											: '')
 								"
 							>
-								{{ addZeros(value) }}
+								<code>{{ addZeros(value) }}</code>
 							</td>
 						</tr>
 					</tbody>
