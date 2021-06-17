@@ -48,7 +48,7 @@
 											: '')
 								"
 							>
-								{{ rows[0] ? value : "" }}
+								{{ rows[0] ? addZeros(value) : "" }}
 							</td>
 						</tr>
 					</tbody>
@@ -75,7 +75,7 @@
 											: '')
 								"
 							>
-								{{ value }}
+								{{ addZeros(value) }}
 							</td>
 						</tr>
 					</tbody>
@@ -102,7 +102,7 @@
 											: '')
 								"
 							>
-								{{ value }}
+								{{ addZeros(value) }}
 							</td>
 						</tr>
 					</tbody>
@@ -122,7 +122,16 @@
 			};
 		},
 		methods: {
-			getRandomNumber(existingNumbers = [], minimum = 1000, maximum = 9999) {
+			addZeros(int, amount = 4) {
+				int = int.toString();
+				if (int.length !== amount) {
+					while (int.length < amount) {
+						int = `0${int}`;
+					}
+				}
+				return int;
+			},
+			getRandomNumber(existingNumbers = [], minimum = 0, maximum = 9999) {
 				const random = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
 				if (existingNumbers.includes(random)) return this.getRandomNumber(existingNumbers);
 				return random;
