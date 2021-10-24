@@ -220,9 +220,6 @@
 				return matches;
 			},
 		},
-		created() {
-			this.populate();
-		},
 		methods: {
 			addZeros(int, amount = 4) {
 				int = int.toString();
