@@ -4,8 +4,10 @@
 			<div
 				v-if="!singleMatches.length && !multipleMatches.length"
 				class="x-box xm__txtAlign-center xm__txtColor-secondary"
+				data-tooltip="No se detectaron coincidencias"
+				data-tooltip-text
 			>
-				no se detectaron coincidencias
+				0
 			</div>
 			<a
 				v-if="singleMatches.length"
@@ -43,12 +45,32 @@
 				<p v-if="rows.length">
 					Mostrando la tabla
 					<b>#{{ activeRowsIndex + 1 }}</b>
-					de {{ rows.length }} tablas generadas
+					de {{ rows.length }} tabla{{ rows.length > 1 ? "s" : "" }} generada{{
+						rows.length > 1 ? "s" : ""
+					}}
 				</p>
+				<template v-else>
+					<p>
+						Pulsa
+						<b>"generar numeros"</b>
+						para poblar las tablas y/o generar mas numeros, pulsa
+						<b>"numeros previos"</b>
+						para volver a combinaciones previas o
+						<b>"numeros siguientes"</b>
+						para volver sobre tus pasos.
+					</p>
+					<p>
+						Recuerda que la probabilidad de que un numero se repita en dos tablas es
+						<b>1:1000</b>
+						y en 3 tablas de
+						<b>1:3000</b>
+					</p>
+				</template>
 			</div>
-			<div class="x-flx m__flxRow-wrap xu__flx-center">
+			<button class="x-btn" @click="populate()">Generar numeros</button>
+			<div class="x-flx m__flxRow xu__flx-center">
 				<button
-					v-if="rows.length > 1 && activeRowsIndex > 0"
+					:disabled="!(rows.length > 1 && activeRowsIndex > 0)"
 					class="x-link"
 					data-tooltip="Numeros previos"
 					@click="goBack()"
@@ -56,9 +78,9 @@
 					<i class="fas fa-arrow-left x-icon"></i>
 					<span class="xm__hidden:md-inv">Numeros previos</span>
 				</button>
-				<button class="x-btn" @click="populate()">Generar numeros</button>
+
 				<button
-					v-if="rows.length > 1 && activeRowsIndex < rows.length - 1"
+					:disabled="!(rows.length > 1 && activeRowsIndex < rows.length - 1)"
 					class="x-link"
 					data-tooltip="Numeros siguientes"
 					@click="goForward()"
@@ -194,29 +216,33 @@
 				return this.rows[this.activeRowsIndex] || [];
 			},
 			singleMatches() {
-				// this.getRows.forEach(row => {});
 				const matches = [];
-				this.getRows[0].forEach(number => {
-					if (
-						(this.getRows[1].includes(number) || this.getRows[2].includes(number)) &&
-						!matches.includes(number)
-					) {
-						matches.push(number);
-					}
-				});
+				if (this.getRows.length) {
+					this.getRows[0].forEach(number => {
+						if (
+							(this.getRows[1].includes(number) ||
+								this.getRows[2].includes(number)) &&
+							!matches.includes(number)
+						) {
+							matches.push(number);
+						}
+					});
+				}
 				return matches;
 			},
 			multipleMatches() {
 				const matches = [];
-				this.getRows[0].forEach(number => {
-					if (
-						this.getRows[1].includes(number) &&
-						this.getRows[2].includes(number) &&
-						!matches.includes(number)
-					) {
-						matches.push(number);
-					}
-				});
+				if (this.getRows.length) {
+					this.getRows[0].forEach(number => {
+						if (
+							this.getRows[1].includes(number) &&
+							this.getRows[2].includes(number) &&
+							!matches.includes(number)
+						) {
+							matches.push(number);
+						}
+					});
+				}
 				return matches;
 			},
 		},
